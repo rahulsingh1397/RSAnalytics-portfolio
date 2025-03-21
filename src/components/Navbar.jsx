@@ -1,8 +1,5 @@
 import { useEffect } from "react";
-<<<<<<< HEAD
 import logo from "../../public/images/269168.jpeg";   
-=======
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
   useEffect(() => {
@@ -15,13 +12,8 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <a href="#home" className="font-mono text-xl font-bold text-blue-500">
-<<<<<<< HEAD
           <img src={logo}  style = {{height : "50px", width: "50px"}}/>
                   </a>
-=======
-            R<span className="text-pink-600">.S</span>
-          </a>
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
 
           {/* Mobile Menu Toggle */}
           <div

@@ -1,9 +1,5 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
 export const About = () => {
   const cloudAndDevOps = [
     "AWS (SageMaker, S3, Lambda)",
@@ -37,11 +33,7 @@ export const About = () => {
     >
       <RevealOnScroll>
         <div className="max-w-4xl mx-auto px-6">
-<<<<<<< HEAD
           <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent text-center leading-tight tracking-wide">
-=======
-          <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-blue-600 to-pink-400 bg-clip-text text-transparent text-center leading-tight tracking-wide">
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
             About Me
           </h2>
 
@@ -58,11 +50,7 @@ export const About = () => {
                   {cloudAndDevOps.map((tech, key) => (
                     <span
                       key={key}
-<<<<<<< HEAD
                       className="bg-yellow-300/20 text-red-500 py-1 px-4 rounded-full text-sm hover:bg-blue-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.3)] transition-all duration-300 ease-in-out"
-=======
-                      className="bg-purple-500/20 text-red-500 py-1 px-4 rounded-full text-sm hover:bg-blue-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.3)] transition-all duration-300 ease-in-out"
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
                     >
                       {tech}
                     </span>
@@ -77,11 +65,7 @@ export const About = () => {
                   {machineLearningAndAI.map((tech, key) => (
                     <span
                       key={key}
-<<<<<<< HEAD
                       className="bg-yellow-300/20 text-red-500 py-1 px-4 rounded-full text-sm hover:bg-purple-500/30 hover:shadow-[0_2px_8px_rgba(156,113,226,0.3)] transition-all duration-300 ease-in-out"
-=======
-                      className="bg-pink-500/20 text-yellow-500 py-1 px-4 rounded-full text-sm hover:bg-purple-500/30 hover:shadow-[0_2px_8px_rgba(156,113,226,0.3)] transition-all duration-300 ease-in-out"
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
                     >
                       {tech}
                     </span>
@@ -96,11 +80,7 @@ export const About = () => {
                   {bigDataAndETL.map((tech, key) => (
                     <span
                       key={key}
-<<<<<<< HEAD
                       className="bg-yellow-300/20 text-red-500 py-1 px-4 rounded-full text-sm hover:bg-yellow-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.3)] transition-all duration-300 ease-in-out"
-=======
-                      className="bg-green-500/20 text-blue-500 py-1 px-4 rounded-full text-sm hover:bg-yellow-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.3)] transition-all duration-300 ease-in-out"
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
                     >
                       {tech}
                     </span>

@@ -1,5 +1,4 @@
 import { RevealOnScroll } from "../RevealOnScroll";
-<<<<<<< HEAD
 import alexaImage from "../../../public/images/alexa-reviews.jpg";
 import fineTune from "../../../public/images/fine-tune.jpg.webp";
 import twitch from "../../../public/images/Partner.png";
@@ -7,12 +6,6 @@ import maljpeg from "../../../public/images/maljpeg.jpeg";
 import agenticai from "../../../public/images/agentic.webp" ;  
 import chatbot from "../../../public/images/chatbot.jpg" ;           
                  
-=======
-import alexaImage from "E:/RSAnalytics-portfolio-main/public/images/alexa-reviews.jpg";
-import fineTune from "E:/RSAnalytics-portfolio-main/public/images/fine-tune.jpg.webp"
-import twitch from "E:/RSAnalytics-portfolio-main/public/images/Partner.png"
-import maljpeg from "E:/RSAnalytics-portfolio-main/public/images/maljpeg.jpeg"                                 
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
 export const Projects = () => {
   const projects = [
     {
@@ -45,11 +38,7 @@ export const Projects = () => {
         "An intelligent AI-powered financial advisor providing personalized insights and recommendations.",
       techStack: ["Grok", "LangFlow", "LLM", "OpenAI", "Gen AI"],
       link: "#",
-<<<<<<< HEAD
       image: agenticai,
-=======
-      image: "/images/alexa-reviews.jpg",
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
     },
     {
       title: "Amazon Alexa Reviews Analysis",
@@ -60,21 +49,12 @@ export const Projects = () => {
       image: alexaImage,
     },
     {
-<<<<<<< HEAD
       title: "Predicting Energy Consumption using ML",
       description:
         "A machine learning model to forecast energy consumption and optimize energy usage in buildings.",
       techStack: ["Python", "Scikit-Learn", "XGBoost", "Time Series"],
       link: "#",
       image: chatbot,
-=======
-      title: "AI-Powered Chatbot for Customer Support",
-      description:
-        "A conversational AI system for real-time customer support and issue resolution.",
-      techStack: ["Python", "NLP", "TensorFlow", "DialogFlow", "Chatbot"],
-      link: "#",
-      image: "public\images\alexa-reviews.jpg",
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
     },
   ];
 
@@ -85,11 +65,7 @@ export const Projects = () => {
     >
       <RevealOnScroll>
         <div className="max-w-6xl mx-auto px-6">
-<<<<<<< HEAD
           <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent leading-tight tracking-wide text-center">
-=======
-          <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent leading-tight tracking-wide text-center">
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
             Featured Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -112,11 +88,7 @@ export const Projects = () => {
                   {project.techStack.map((tech, i) => (
                     <span
                       key={i}
-<<<<<<< HEAD
                       className="bg-yellow-300/20 text-red-500 text-xs font-medium px-3 py-1 rounded-full"
-=======
-                      className="bg-blue-400/20 text-pink-400 text-xs font-medium px-3 py-1 rounded-full"
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
                     >
                       {tech}
                     </span>
@@ -126,11 +98,7 @@ export const Projects = () => {
                 <div className="mt-auto flex justify-center">
                   <a
                     href={project.link}
-<<<<<<< HEAD
                     className="text-orange-600 font-medium hover:text-orange-400 transition"
-=======
-                    className="text-blue-600 font-medium hover:text-blue-300 transition"
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
                   >
                     View Project →
                   </a>

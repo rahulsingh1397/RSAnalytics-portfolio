@@ -9,14 +9,11 @@ body {
   color: #f3f4f6;
 }
 
-<<<<<<< HEAD
 html {
   scroll-behavior: smooth;
 }
 
 
-=======
->>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
 @layer utilities {
   @keyframes blink {
     0%,
