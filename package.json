@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
+<<<<<<< HEAD
     "autoprefixer": "^10.4.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^10.12.0",
@@ -27,6 +28,14 @@
     "react-simple-typewriter": "^5.0.1",
     "react-text-transition": "^3.1.0",
     "shadcn-ui": "^0.8.0",
+=======
+    "emailjs-com": "^3.2.0",
+    "react": "^18.3.1",
+    "react-datepicker": "^8.2.1",
+    "react-dom": "^18.3.1",
+    "react-scroll": "^1.9.3",
+    "react-simple-typewriter": "^5.0.1",
+>>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {

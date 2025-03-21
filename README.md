@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This Contains my Personal portfolio website
 =======
+=======
+>>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
 # Personal Portfolio
 
 This repository contains a beautiful, responsive personal portfolio built using **React**, **Vite**, and **TailwindCSS**. The project showcases modern web development techniques including smooth animations, responsive layouts, and interactive UI components.
@@ -91,4 +94,7 @@ your-portfolio/
 ---
 
 Happy coding and enjoy building your professional portfolio!
+<<<<<<< HEAD
 >>>>>>> 372d234 (Initial commit: Upload website)
+=======
+>>>>>>> 372d23404b3ac9ee4b3606ee5166aa255e80883a
