@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@tailwindcss/oxide": "^4.0.15",
     "@tailwindcss/vite": "^4.0.0",
     "autoprefixer": "^10.4.0",
     "emailjs-com": "^3.2.0",
@@ -27,7 +28,7 @@
     "react-simple-typewriter": "^5.0.1",
     "react-text-transition": "^3.1.0",
     "shadcn-ui": "^0.8.0",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.15"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
