@@ -57,7 +57,8 @@ export const Home = () => {
           {`I transform raw data into actionable insights, driving innovation through machine learning and AI.
  Passionate about predictive modeling, data visualization, and scalable analytics, I craft solutions that optimize business strategies.
  My work bridges the gap between complex data and real-world impact, ensuring smarter, data-driven decisions.`.split(" ").map((word, index) => (
-            <span
+  
+<span
               key={index}
               className="inline-block transition-all duration-200 ease-in-out hover:scale-110 hover:text-white hover:shadow-lg"
             >
@@ -104,7 +105,7 @@ export const Home = () => {
   {/* Add CSS for smoother scrolling */}
   <style jsx>{`
     .scrolling-stack {
-      display: grid;
+      display: grid;npm 
       grid-template-columns: repeat(3, 1fr); /* Three logos per row */
       gap: 10px;
       animation: scroll 12s linear infinite; /* Reduced animation time for faster cycling */
