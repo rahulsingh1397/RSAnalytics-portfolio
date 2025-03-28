@@ -37,7 +37,7 @@ export const Home = () => {
       
       {/* Left Section - Personal Information with specific width */}
       <div className="flex flex-col justify-center h-full w-[55vw]">
-        <h1 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent leading-tight tracking-wide mt-2">
+        <h1 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-gray-300 to-gray-00 bg-clip-text text-transparent leading-tight tracking-wide mt-2">
           Hey! I am Rahul Singh
         </h1>
 
