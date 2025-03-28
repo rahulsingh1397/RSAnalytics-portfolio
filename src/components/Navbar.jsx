@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import logo from "../../public/images/269168.jpeg";   
+import logo from "../../public/images/RS.jpeg";   
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
   useEffect(() => {
@@ -7,12 +7,12 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   }, [menuOpen]);
 
   return (
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(10,10,10,0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+    <nav className="fixed top-0 w-full z-40 bg-[rgba(5, 5, 5, 0.22)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <a href="#home" className="font-mono text-xl font-bold text-blue-500">
-          <img src={logo}  style = {{height : "50px", width: "50px"}}/>
+          <img src={logo}  style = {{height : "60px", width: "80px"}}/>
                   </a>
 
           {/* Mobile Menu Toggle */}

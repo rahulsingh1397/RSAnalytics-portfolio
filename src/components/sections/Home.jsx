@@ -1,171 +1,170 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 import { Typewriter } from "react-simple-typewriter";
+import { useEffect } from "react";
 
-// Define Tech Stack Logos
 const techStack = [
   { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   { name: "SQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-  { name: "R", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" },
   { name: "TensorFlow", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
   { name: "PyTorch", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
   { name: "XGBoost", src: "https://upload.wikimedia.org/wikipedia/commons/6/69/XGBoost_logo.png" },
-  { name: "Apache Spark", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" },
   { name: "AWS", src: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" },
   { name: "Azure", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
   { name: "Docker", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-  { name: "Kubernetes", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-  { name: "Tableau", src: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" },
-  { name: "Power BI", src: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
-  { name: "Matplotlib", src: "https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" },
-  { name: "Pandas", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-  { name: "NumPy", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-  { name: "Airflow", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" },
-  { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "Jupyter", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
-  { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "Airflow", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" }
+  { name: "Kubernetes", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" }
 ];
 
-// Duplicate array for infinite scrolling
-const duplicatedStack = [...techStack, ...techStack];
+const duplicatedStack = [...techStack, ...techStack, ...techStack];
 
 export const Home = () => {
+
+  // Random text generator function
+  const randomText = () => {
+    var text = " ";
+    let letters = text[Math.floor(Math.random() * text.length)];
+    return letters;
+  };
+
+  // Function to generate random color
+  const randomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  // Rain function to generate rain drops
+  const rain = () => {
+    let cloud = document.querySelector('.cloud');
+    let e = document.createElement('div');
+    e.classList.add('drop');
+    cloud.appendChild(e);
+
+    let left = Math.floor(Math.random() * 100); // Adjust left position to fit within cloud
+    let size = Math.random() * 1.5;
+    let duration = Math.random() * 2 + 1; // Adjust the rain speed
+
+    e.innerText = randomText();
+    e.style.left = left + 'vw'; // Use viewport width (vw) for left positioning
+    e.style.fontSize = 0.5 + size + 'em';
+    e.style.animationDuration = duration + 's';
+    e.style.color = randomColor(); // Apply a random color to the drop
+
+    setTimeout(() => {
+      cloud.removeChild(e);
+    }, duration * 1000); // Adjust timeout to match the duration
+  };
+
+  // UseEffect to set interval for rain effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      rain();
+    }, 20); // Adjust this value to control the frequency of rain
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
+
   return (
-    <section id="home" className="min-h-screen flex items-center relative bg-black px-10">
-  <RevealOnScroll>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto w-full items-center">
-      
-      {/* Left Section - Personal Information with specific width */}
-      <div className="flex flex-col justify-center h-full w-[55vw]">
-        <h1 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-gray-300 to-gray-00 bg-clip-text text-transparent leading-tight tracking-wide mt-2">
-          Hey! I am Rahul Singh
-        </h1>
-
-        <h2 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent leading-tight tracking-wide min-h-[70px] mb-5">
-        <Typewriter
-              words={["Data Science", "Machine Learning", "Gen AI"]}
-              loop={false} // Runs once, then smoothly stops
-              cursor
-              typeSpeed={90}
-              deleteSpeed={50}
-              delaySpeed={1500}
-            />
-        </h2>
-
-        {/* Improved Paragraph Flow with Hover Effect */}
-        <p className="text-gray-300 text-lg mb-12 max-w-4xl mx-auto leading-relaxed trscking-wide ">
-          {`I transform raw data into actionable insights, driving innovation through machine learning and AI.
- Passionate about predictive modeling, data visualization, and scalable analytics, I craft solutions that optimize business strategies.
- My work bridges the gap between complex data and real-world impact, ensuring smarter, data-driven decisions.`.split(" ").map((word, index) => (
-  
-<span
-              key={index}
-              className="inline-block transition-all duration-200 ease-in-out hover:scale-110 hover:text-white hover:shadow-lg"
-            >
-              {word}&nbsp;
-            </span>
-          ))}
-        </p>
-
-          {/* Buttons - View Project and Connect Me */}
-          <div className="flex gap-9 ml-50">
-           <a 
-              href="#projects" 
-              className="bg-gradient-to-r from-red-800 to-orange-800 text-white py-3 px-7 rounded-lg font-semibold text-lg hover:bg-gradient-to-l hover:from-blue-600 hover:to-green-500 transition-all duration-200"
-           >
-             Projects
-            </a>
-           <a 
-              href="#contact" 
-             className="bg-gradient-to-r from-red-800 to-orange-800 text-white py-3 px-7 rounded-lg font-semibold text-lg hover:bg-gradient-to-l hover:from-blue-600 hover:to-green-500 transition-all duration-200"
-           >
-             Connect
-            </a>
-          </div>
-
+    <section id="home" className="min-h-screen flex flex-col items-center justify-start relative bg-black px-6 text-white">
+      {/* Cloud and Rain animation */}
+      <div className="cloud absolute top-0 left-0 w-full h-[200px]">
+        {/* This is where the rain will appear */}
       </div>
 
-      {/* Right Section - Infinite Scrolling Tech Stack */}
-      <div className="flex justify-end h-full w-full ml-40 pr-10">
-        <div className="relative w-80 h-[600px] overflow-hidden">
+      <RevealOnScroll>
+        <div className="max-w-4xl text-center relative z-10 mt-40">
+          {/* Adjusted margin-top (mt-20) for moving elements closer to top */}
+          <h1 className="text-3xl md:text-7xl font-semibold text-gray-300">Hey! I am Rahul Singh</h1>
+          <h2 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent mt-3">
+            <Typewriter words={["Data Science", "Machine Learning", "Gen AI"]} loop cursor typeSpeed={90} deleteSpeed={50} delaySpeed={1500} />
+          </h2>
+          <p className="text-gray-300 text-lg mt-5 leading-relaxed max-w-3xl mx-auto">
+          I turn raw data into powerful, actionable insights that fuel innovation through cutting-edge Machine Learning and AI. 
+          With a deep passion for predictive modeling, data visualization, and scalable analytics, 
+          I design solutions that not only optimize business strategies but also drive growth and competitive advantage
+          </p>
+          <div className="flex gap-6 mt-8 justify-center">
+            <a href="#projects" className="bg-red-800 hover:bg-orange-400 text-white py-3 px-6 rounded-lg font-semibold text-lg">Projects</a>
+            <a href="#contact" className="bg-red-800 hover:bg-orange-400 text-white py-3 px-6 rounded-lg font-semibold text-lg">Connect</a>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Tech Stack Scrolling Section */}
+      <div className="w-full overflow-hidden absolute bottom-11">
+        <div className="scrolling-container">
           <div className="scrolling-stack">
             {duplicatedStack.map((tech, index) => (
-              <div key={index} className="tech-logo">
-                <img src={tech.src} alt={tech.name} loading="lazy" />
-                <div className="tech-name">{tech.name}</div> {/* Tech Name on hover */}
+              <div key={index} className="tech-logo flex flex-col items-center relative group">
+                <img src={tech.src} alt={tech.name} className="w-20 h-20 object-contain" loading="lazy" />
+                <span className="tech-name absolute text-md mt-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{tech.name}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-    </div>
-  </RevealOnScroll>
+      <style jsx>{`
+        .cloud {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 200px;
+          pointer-events: none;
+          z-index: 0;
+        }
 
-  {/* Add CSS for smoother scrolling */}
-  <style jsx>{`
-    .scrolling-stack {
-      display: grid;npm 
-      grid-template-columns: repeat(3, 1fr); /* Three logos per row */
-      gap: 10px;
-      animation: scroll 12s linear infinite; /* Reduced animation time for faster cycling */
-      position: absolute;
-      right: 0;
-    }
+        .drop {
+          position: absolute;
+          top: -10px;
+          font-family: monospace;
+          animation: fall linear infinite;
+        }
 
-    .tech-logo {
-      width: 90px;  /* Adjusted for better scaling */
-      height: 90px;
-      padding: 8px;
-      background: rgb(0, 0, 0);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s ease-in-out;
-    }
+        @keyframes fall {
+          to {
+            transform: translateY(100vh);
+          }
+        }
 
-    /* Hover effect for tech tiles */
-    .tech-logo:hover {
-      transform: scale(1.1); /* Slightly enlarge the tile */
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-      background-color: #2d2d2d; /* Darken the background */
-    }
+        .scrolling-container {
+          display: flex;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 180%;
+          position: relative;
+        }
 
-    .tech-logo img {
-      width: 85%;
-      height: 85%;
-      object-fit: contain;
-    }
+        .scrolling-stack {
+          display: flex;
+          gap: 40px;
+          animation: scroll 20s linear infinite;
+          width: max-content;
+        }
 
-    /* Hidden name by default */
-    .tech-name {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 14px;
-      color: #fff;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
+        @keyframes scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
 
-    /* Show tech name on hover */
-    .tech-logo:hover .tech-name {
-      display: block;
-      opacity: 1;
-    }
+        .tech-logo:hover img {
+          transform: scale(1.1);
+          transition: transform 0.3s ease-in-out;
+        }
 
-    @keyframes scroll {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
-  `}</style>
-</section>
+        .tech-name {
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
 
-);
+        .group:hover .tech-name {
+          opacity: 1;
+        }
+      `}</style>
+    </section>
+  );
 };
