@@ -65,24 +65,28 @@ export const Projects = () => {
     >
       <RevealOnScroll>
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent leading-tight tracking-wide text-center">
+          <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent leading-tight tracking-wide text-center animate__animated animate__fadeIn">
             Featured Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl border border-white/10
-                           hover:border-blue-500/50 hover:shadow-xl transition-all duration-300
-                           flex flex-col"
+                className="bg-gray-800/60 backdrop-blur-lg p-6 rounded-2xl border border-white/10
+                           hover:border-blue-500/50 hover:shadow-2xl hover:scale-105 transition-all duration-300
+                           flex flex-col transform hover:translateY-4"
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-40 object-cover rounded-lg mb-4"
+                  className="w-full h-40 object-cover rounded-lg mb-4 transition-transform duration-300 ease-in-out transform hover:scale-105"
                 />
-                <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-3 animate__animated animate__fadeInUp animate__delay-1s">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 text-sm mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                  {project.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.techStack.map((tech, i) => (
@@ -111,3 +115,4 @@ export const Projects = () => {
     </section>
   );
 };
+

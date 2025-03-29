@@ -76,11 +76,11 @@ export const Home = () => {
       <RevealOnScroll>
         <div className="max-w-4xl text-center relative z-10 mt-40">
           {/* Adjusted margin-top (mt-20) for moving elements closer to top */}
-          <h1 className="text-3xl md:text-7xl font-semibold text-gray-300">Hey! I am Rahul Singh</h1>
+          <h1 className="text-4xl md:text-7xl font-semibold text-gray-300">Hey! I am Rahul Singh</h1>
           <h2 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent mt-3">
             <Typewriter words={["Data Science", "Machine Learning", "Gen AI"]} loop cursor typeSpeed={90} deleteSpeed={50} delaySpeed={1500} />
           </h2>
-          <p className="text-gray-300 text-lg mt-5 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-gray-300 text-lg mt-6 leading-relaxed max-w-4xl mx-auto">
           I turn raw data into powerful, actionable insights that fuel innovation through cutting-edge Machine Learning and AI. 
           With a deep passion for predictive modeling, data visualization, and scalable analytics, 
           I design solutions that not only optimize business strategies but also drive growth and competitive advantage
