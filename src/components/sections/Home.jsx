@@ -1,6 +1,9 @@
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { Typewriter } from "react-simple-typewriter";
-import { useEffect } from "react";
 
 const techStack = [
   { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -17,73 +20,205 @@ const techStack = [
 const duplicatedStack = [...techStack, ...techStack, ...techStack];
 
 export const Home = () => {
+  const containerRef = useRef(null);
 
-  // Random text generator function
-  const randomText = () => {
-    var text = " ";
-    let letters = text[Math.floor(Math.random() * text.length)];
-    return letters;
-  };
-
-  // Function to generate random color
-  const randomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-  // Rain function to generate rain drops
-  const rain = () => {
-    let cloud = document.querySelector('.cloud');
-    let e = document.createElement('div');
-    e.classList.add('drop');
-    cloud.appendChild(e);
-
-    let left = Math.floor(Math.random() * 100); // Adjust left position to fit within cloud
-    let size = Math.random() * 1.5;
-    let duration = Math.random() * 2 + 1; // Adjust the rain speed
-
-    e.innerText = randomText();
-    e.style.left = left + 'vw'; // Use viewport width (vw) for left positioning
-    e.style.fontSize = 0.5 + size + 'em';
-    e.style.animationDuration = duration + 's';
-    e.style.color = randomColor(); // Apply a random color to the drop
-
-    setTimeout(() => {
-      cloud.removeChild(e);
-    }, duration * 1000); // Adjust timeout to match the duration
-  };
-
-  // UseEffect to set interval for rain effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      rain();
-    }, 20); // Adjust this value to control the frequency of rain
+    if (!containerRef.current) return;
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(110, window.innerWidth / window.innerHeight, 0.5, 100);
+    camera.position.set(0, 1.5, 1);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    containerRef.current.appendChild(renderer.domElement);
+
+    const loader = new GLTFLoader();
+    loader.load(
+      "/RSAnalytics-portfolio/models/robotic_eye.glb",
+      (gltf) => {
+        const model = gltf.scene;
+        model.scale.set(4, 4, 4);
+        model.position.set(0, 0.58, 0.1);
+
+        const textureLoader = new THREE.TextureLoader();
+        const testTexture = textureLoader.load("/RSAnalytics-portfolio/models/textures/Light_emissive.png");
+
+        testTexture.wrapS = THREE.RepeatWrapping;
+        testTexture.wrapT = THREE.RepeatWrapping;
+        testTexture.repeat.set(1, 1);
+
+        model.traverse((child) => {
+          if (!child.isMesh) return;
+
+          const materials = Array.isArray(child.material) ? child.material : [child.material];
+
+          if (child.name === "Lens_Low_Poly_0") {
+            materials.forEach((mat) => {
+              mat.transparent = true;
+              mat.opacity = 0.3;
+              mat.depthWrite = false;
+              mat.metalness = 0.1;
+              mat.roughness = 0.05;
+              mat.side = THREE.DoubleSide;
+              mat.color = new THREE.Color(0x000000);
+            });
+            return;
+          }
+
+          if (child.name === "Light_Low_Poly_0") {
+            materials.forEach((mat) => {
+              mat.map = testTexture;
+              mat.emissiveMap = testTexture;
+              mat.emissive = new THREE.Color("#ff0000");
+              mat.emissiveIntensity = 9000.0;
+              mat.metalness = 1.0;
+              mat.roughness = 0.3;
+              mat.transparent = true;
+              mat.opacity = 1.0;
+              mat.side = THREE.DoubleSide;
+            });
+            return;
+          }
+
+          materials.forEach((mat) => {
+            switch (mat.name) {
+              case "Camera_Plastic":
+                mat.color = new THREE.Color("#252525");
+                break;
+              case "Metal":
+                mat.color = new THREE.Color("#dadada");
+                break;
+              case "Black_Plastic":
+                mat.color = new THREE.Color("#3e3e3e");
+                mat.opacity = 1.0;
+                break;
+              case "Metal.001":
+                mat.color = new THREE.Color("#e7e7e7");
+                break;
+              case "Copper":
+                mat.color = new THREE.Color("#fad0c0");
+                break;
+              case "White_Plastic":
+                mat.color = new THREE.Color("#000000");
+                break;
+              case "BezierCurve.006_0":
+                mat.color = new THREE.Color("#ffffff");
+                break;
+              case "Light":
+                mat.emissive = new THREE.Color("#ff0000");
+                mat.emissiveIntensity = 3000.0;
+                mat.color = new THREE.Color("#ff0000");
+                break;
+              case "Camera_Lens":
+                mat.color = new THREE.Color("#000000");
+                mat.opacity = 0.5;
+                mat.transparent = false;
+                break;
+              case "Camera_Lens.001":
+                mat.color = new THREE.Color("#ff0000");
+                mat.opacity = 1.0;
+                mat.transparent = true;
+                break;
+              default:
+                mat.color = new THREE.Color(0x888ca0);
+                mat.emissive = new THREE.Color(0x000000);
+                mat.emissiveIntensity = 2000.0;
+                mat.map = null;
+                mat.metalness = 0.9;
+                mat.roughness = 0.2;
+                mat.transparent = true;
+                mat.opacity = 0.0;
+                mat.side = THREE.FrontSide;
+                break;
+            }
+          });
+        });
+
+        scene.add(model);
+      },
+      undefined,
+      (error) => console.error("Error loading model:", error)
+    );
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    directionalLight.position.set(0, 10, 5);
+    scene.add(directionalLight);
+
+    const backLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    backLight.position.set(0, -5, -5);
+    scene.add(backLight);
+
+    const pointLight = new THREE.PointLight(0xffffff, 1.2, 100);
+    pointLight.position.set(0, 8, 0);
+    scene.add(pointLight);
+
+    // Spotlight setup
+    const spotlight = new THREE.SpotLight(0xffffff, 2, 20, Math.PI / 6, 0.5, 2);
+    spotlight.position.set(0, 5, 3); // Position above the model
+    spotlight.target.position.set(0, 0.58, 0.1); // Targeting the model
+    scene.add(spotlight);
+    scene.add(spotlight.target);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.minDistance = controls.maxDistance = camera.position.length();
+
+    // Mouse movement for eye effect
+    const onMouseMove = (event) => {
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      const model = scene.children[scene.children.length - 1];
+      model.rotation.y = THREE.MathUtils.clamp(mouseX * Math.PI / 2.5, -Math.PI / 2.5, Math.PI / 2.5);
+      model.rotation.x = THREE.MathUtils.clamp(-mouseY * Math.PI / 2.5, -Math.PI / 2.5, Math.PI / 2.5);
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    window.addEventListener("resize", () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      while (containerRef.current.firstChild) {
+        containerRef.current.removeChild(containerRef.current.firstChild);
+      }
+      renderer.dispose();
+      controls.dispose();
+    };
   }, []);
 
   return (
     <section id="home" className="min-h-screen flex flex-col items-center justify-start relative bg-black px-6 text-white">
-      {/* Cloud and Rain animation */}
-      <div className="cloud absolute top-0 left-0 w-full h-[200px]">
-        {/* This is where the rain will appear */}
-      </div>
+      <div ref={containerRef} className="w-full h-[500px] flex justify-center items-center" />
 
       <RevealOnScroll>
-        <div className="max-w-4xl text-center relative z-10 mt-40">
-          {/* Adjusted margin-top (mt-20) for moving elements closer to top */}
+        <div className="max-w-4xl text-center relative z-10 mt-[-200px] md:mt+25">
           <h1 className="text-4xl md:text-7xl font-semibold text-gray-300">Hey! I am Rahul Singh</h1>
           <h2 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent mt-3">
             <Typewriter words={["Data Science", "Machine Learning", "Gen AI"]} loop cursor typeSpeed={90} deleteSpeed={50} delaySpeed={1500} />
           </h2>
           <p className="text-gray-300 text-lg mt-6 leading-relaxed max-w-4xl mx-auto">
-          I turn raw data into powerful, actionable insights that fuel innovation through cutting-edge Machine Learning and AI. 
-          With a deep passion for predictive modeling, data visualization, and scalable analytics, 
-          I design solutions that not only optimize business strategies but also drive growth and competitive advantage
+            I turn raw data into powerful, actionable insights that fuel innovation through cutting-edge Machine Learning and AI. 
+            With a deep passion for predictive modeling, data visualization, and scalable analytics, 
+            I design solutions that not only optimize business strategies but also drive growth and competitive advantage.
           </p>
           <div className="flex gap-6 mt-8 justify-center">
             <a href="#projects" className="bg-red-800 hover:bg-orange-400 text-white py-3 px-6 rounded-lg font-semibold text-lg">Projects</a>
@@ -92,7 +227,6 @@ export const Home = () => {
         </div>
       </RevealOnScroll>
 
-      {/* Tech Stack Scrolling Section */}
       <div className="w-full overflow-hidden absolute bottom-11">
         <div className="scrolling-container">
           <div className="scrolling-stack">
@@ -107,29 +241,6 @@ export const Home = () => {
       </div>
 
       <style jsx>{`
-        .cloud {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 200px;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .drop {
-          position: absolute;
-          top: -10px;
-          font-family: monospace;
-          animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-          to {
-            transform: translateY(100vh);
-          }
-        }
-
         .scrolling-container {
           display: flex;
           overflow: hidden;
@@ -137,30 +248,25 @@ export const Home = () => {
           width: 180%;
           position: relative;
         }
-
         .scrolling-stack {
           display: flex;
           gap: 40px;
           animation: scroll 20s linear infinite;
           width: max-content;
         }
-
         @keyframes scroll {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }
-
         .tech-logo:hover img {
           transform: scale(1.1);
           transition: transform 0.3s ease-in-out;
         }
-
         .tech-name {
           position: absolute;
           opacity: 0;
           transition: opacity 0.3s ease;
         }
-
         .group:hover .tech-name {
           opacity: 1;
         }
