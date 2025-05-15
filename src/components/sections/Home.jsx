@@ -26,7 +26,6 @@ export const Home = () => {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(110, window.innerWidth / window.innerHeight, 0.5, 100);
     camera.position.set(0, 1.5, 1);
 
@@ -93,7 +92,6 @@ export const Home = () => {
                 break;
               case "Black_Plastic":
                 mat.color = new THREE.Color("#3e3e3e");
-                mat.opacity = 1.0;
                 break;
               case "Metal.001":
                 mat.color = new THREE.Color("#e7e7e7");
@@ -115,7 +113,6 @@ export const Home = () => {
               case "Camera_Lens":
                 mat.color = new THREE.Color("#000000");
                 mat.opacity = 0.5;
-                mat.transparent = false;
                 break;
               case "Camera_Lens.001":
                 mat.color = new THREE.Color("#ff0000");
@@ -143,7 +140,6 @@ export const Home = () => {
       (error) => console.error("Error loading model:", error)
     );
 
-    // Lights
     scene.add(new THREE.AmbientLight(0xffffff, 0.5));
     const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
     directionalLight.position.set(0, 10, 5);
@@ -157,21 +153,18 @@ export const Home = () => {
     pointLight.position.set(0, 8, 0);
     scene.add(pointLight);
 
-    // Spotlight setup
     const spotlight = new THREE.SpotLight(0xffffff, 2, 20, Math.PI / 6, 0.5, 2);
-    spotlight.position.set(0, 5, 3); // Position above the model
-    spotlight.target.position.set(0, 0.58, 0.1); // Targeting the model
+    spotlight.position.set(0, 5, 3);
+    spotlight.target.position.set(0, 0.58, 0.1);
     scene.add(spotlight);
     scene.add(spotlight.target);
 
-    // Controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.minDistance = controls.maxDistance = camera.position.length();
 
-    // Mouse movement for eye effect
     const onMouseMove = (event) => {
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -215,11 +208,14 @@ export const Home = () => {
           <h2 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent mt-3">
             <Typewriter words={["Data Science", "Machine Learning", "Gen AI"]} loop cursor typeSpeed={90} deleteSpeed={50} delaySpeed={1500} />
           </h2>
-          <p className="text-gray-300 text-lg mt-6 leading-relaxed max-w-4xl mx-auto">
-            I turn raw data into powerful, actionable insights that fuel innovation through cutting-edge Machine Learning and AI. 
-            With a deep passion for predictive modeling, data visualization, and scalable analytics, 
-            I design solutions that not only optimize business strategies but also drive growth and competitive advantage.
+          <p className="intro-text text-gray-300 text-lg mt-6 leading-relaxed max-w-4xl mx-auto transition-transform duration-300 flex flex-wrap gap-x-2 gap-y-1 justify-center">
+            {`I turn raw data into powerful, actionable insights that fuel innovation through cutting-edge Machine Learning and AI. With a deep passion for predictive modeling, data visualization, and scalable analytics, I design solutions that not only optimize business strategies but also drive growth and competitive advantage.`
+              .split(" ")
+              .map((word, index) => (
+                <span key={index} className="hover:scale-125 transition-transform duration-300 hover:text-orange-400 cursor-default">{word}&nbsp;</span>
+              ))}
           </p>
+
           <div className="flex gap-6 mt-8 justify-center">
             <a href="#projects" className="bg-red-800 hover:bg-orange-400 text-white py-3 px-6 rounded-lg font-semibold text-lg">Projects</a>
             <a href="#contact" className="bg-red-800 hover:bg-orange-400 text-white py-3 px-6 rounded-lg font-semibold text-lg">Connect</a>
@@ -262,13 +258,9 @@ export const Home = () => {
           transform: scale(1.1);
           transition: transform 0.3s ease-in-out;
         }
-        .tech-name {
-          position: absolute;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        .group:hover .tech-name {
-          opacity: 1;
+        .intro-text:hover {
+          transform: scale(1.05);
+          text-shadow: 0 0 10px rgba(255, 200, 200, 0.4);
         }
       `}</style>
     </section>
