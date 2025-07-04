@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
+    // Removed duplicate reference to react-hooks since it's already included in next/core-web-vitals
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
