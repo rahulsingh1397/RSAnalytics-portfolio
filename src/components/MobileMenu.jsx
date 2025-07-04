@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// No imports needed
 
 export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   return (

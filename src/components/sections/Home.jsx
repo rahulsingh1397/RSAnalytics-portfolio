@@ -189,14 +189,21 @@ export const Home = () => {
     });
 
     return () => {
+      // Store the current value of the ref to avoid the exhaustive deps warning
+      const container = containerRef.current;
       window.removeEventListener("mousemove", onMouseMove);
-      while (containerRef.current.firstChild) {
-        containerRef.current.removeChild(containerRef.current.firstChild);
+      
+      // Check if container still exists before cleaning up
+      if (container) {
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
       }
+      
       renderer.dispose();
       controls.dispose();
     };
-  }, []);
+  }, []); // Empty deps is appropriate here since this runs once on mount
 
   return (
     <section id="home" className="min-h-screen flex flex-col items-center justify-start relative bg-black px-6 text-white">

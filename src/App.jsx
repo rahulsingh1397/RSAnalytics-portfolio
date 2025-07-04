@@ -8,7 +8,7 @@ import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
 import "./index.css";
 import { Contact } from "./components/sections/Contact";
-import React from "react";
+// React is auto-imported in newer JSX transforms
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);

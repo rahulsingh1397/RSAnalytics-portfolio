@@ -12,7 +12,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <a href="#home" className="font-mono text-xl font-bold text-blue-500">
-          <img src={logo}  style = {{height : "60px", width: "80px"}}/>
+          <img src={logo} alt="RS Analytics Logo" style = {{height : "60px", width: "80px"}}/>
                   </a>
 
           {/* Mobile Menu Toggle */}
