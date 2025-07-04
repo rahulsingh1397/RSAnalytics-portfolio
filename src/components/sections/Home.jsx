@@ -188,18 +188,17 @@ export const Home = () => {
       camera.updateProjectionMatrix();
     });
 
+    const currentContainer = containerRef.current;
     return () => {
-      // Store the current value of the ref to avoid the exhaustive deps warning
-      const container = containerRef.current;
       window.removeEventListener("mousemove", onMouseMove);
-      
+
       // Check if container still exists before cleaning up
-      if (container) {
-        while (container.firstChild) {
-          container.removeChild(container.firstChild);
+      if (currentContainer) {
+        while (currentContainer.firstChild) {
+          currentContainer.removeChild(currentContainer.firstChild);
         }
       }
-      
+
       renderer.dispose();
       controls.dispose();
     };
