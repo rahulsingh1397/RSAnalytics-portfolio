@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     // Removed duplicate reference to react-hooks since it's already included in next/core-web-vitals
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'out', '.next', 'node_modules', '*.min.js'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
