@@ -36,14 +36,14 @@ export const Home = () => {
 
     const loader = new GLTFLoader();
     loader.load(
-      "/RSAnalytics-portfolio/models/robotic_eye.glb",
+      "/models/robotic_eye.glb",
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(4, 4, 4);
         model.position.set(0, 0.58, 0.1);
 
         const textureLoader = new THREE.TextureLoader();
-        const testTexture = textureLoader.load("/RSAnalytics-portfolio/models/textures/Light_emissive.png");
+        const testTexture = textureLoader.load("/models/textures/Light_emissive.png");
 
         testTexture.wrapS = THREE.RepeatWrapping;
         testTexture.wrapT = THREE.RepeatWrapping;
